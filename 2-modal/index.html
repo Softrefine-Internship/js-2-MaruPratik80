@@ -3,13 +3,226 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Modal</title>
     <style>
       /* write CSS here */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        font-size: 62.5%;
+      }
+      body {
+        display: grid;
+        place-items: center;
+        height: 100vh;
+        font-family: "Poppins", sans-serif;
+        font-weight: 400;
+        line-height: 1.5;
+      }
+      /* .modal, */
+      .overlay {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .modal {
+        z-index: 10;
+        max-width: 65rem;
+        border-radius: 1.2rem;
+        background-color: #fff;
+        padding: 2.8rem;
+        margin: 1.6rem;
+        box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.1);
+
+        display: grid;
+        grid-template-columns: max-content 1fr max-content;
+        align-items: center;
+        grid-gap: 1.5rem;
+      }
+      .modal__icon-box {
+        align-self: start;
+        grid-row: 1 / span 2;
+        display: grid;
+        place-items: center;
+        height: 4.8rem;
+        width: 4.8rem;
+        border-radius: 50%;
+        background-color: #ffe2e2;
+      }
+      .modal__icon {
+        height: 3.2rem;
+        width: 3.2rem;
+        stroke: #e2262a;
+      }
+      .modal__title {
+        font-size: 2rem;
+        font-weight: 600;
+        color: #333;
+      }
+      .close-modal {
+        transform: translate(1rem, -1rem);
+        grid-row: 1 / span 2;
+        grid-column: -2/ -1;
+        align-self: start;
+        background: none;
+        border: none;
+        cursor: pointer;
+      }
+      .close-modal__icon {
+        height: 2.8rem;
+        width: 2.8rem;
+        stroke: #999;
+        transition: all 0.2s;
+      }
+      .close-modal:hover .close-modal__icon {
+        stroke: #333;
+      }
+      .modal__text {
+        align-self: start;
+        color: #888;
+        font-size: 1.8rem;
+        font-weight: 500;
+      }
+      .modal__btns {
+        align-self: center;
+        grid-column: 1/ -1;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 1rem;
+      }
+      .btn {
+        font-size: 1.8rem;
+        font-weight: 600;
+        border-radius: 0.8rem;
+        line-height: 1;
+        padding: 1rem;
+        transition: all 0.2s;
+        cursor: pointer;
+      }
+      .btn:hover {
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+      }
+      .btn--cancel {
+        color: #333;
+        border: 1px solid #999;
+        background-color: #fff;
+      }
+      .btn--cancel:hover {
+        background-color: #eee;
+      }
+      .btn--deactivate {
+        color: #ffe2e2;
+        border: none;
+        background-color: #e2262a;
+      }
+      .btn--deactivate:hover {
+        background-color: #b51e22;
+      }
+      .btn--deactivate:focus {
+        outline: none;
+        box-shadow: 0 0.5rem 1rem rgba(226, 38, 41, 0.5);
+      }
+      .overlay {
+        background-color: #848a96;
+        height: 100%;
+        width: 100%;
+        z-index: 5;
+      }
+      .hidden {
+        display: none;
+      }
     </style>
   </head>
-  <body></body>
+  <body>
+    <button class="show-modal btn btn--deactivate">Deactivate account</button>
+
+    <div class="modal hidden">
+      <span class="modal__icon-box">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="modal__icon"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="1.5"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+          />
+        </svg>
+      </span>
+      <h2 class="modal__title">Deactivate account</h2>
+      <button class="close close-modal">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="close-modal__icon"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+      </button>
+      <p class="modal__text">
+        Are you sure you want to deactivate your account? All of your data will
+        be permanently removed from our servers forever. This action cannot be
+        undone.
+      </p>
+      <div class="modal__btns">
+        <button class="btn btn--cancel close">Cancel</button>
+        <button class="btn btn--deactivate close">Deactivate</button>
+      </div>
+    </div>
+    <div class="overlay hidden"></div>
+  </body>
   <script>
     // write javascript here
+    "use strict";
+    const modal = document.querySelector(".modal");
+    const overlay = document.querySelector(".overlay");
+    const btnOpenModal = document.querySelector(".show-modal");
+    const btnsCloseModal = document.querySelectorAll(".close");
+
+    const openModal = function () {
+      modal.classList.remove("hidden");
+      overlay.classList.remove("hidden");
+    };
+    const closeModal = function () {
+      modal.classList.add("hidden");
+      overlay.classList.add("hidden");
+    };
+
+    btnOpenModal.addEventListener("click", openModal);
+
+    for (let i = 0; i < btnsCloseModal.length; i++) {
+      btnsCloseModal[i].addEventListener("click", closeModal);
+    }
+    overlay.addEventListener("click", closeModal);
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+        closeModal();
+      }
+    });
   </script>
 </html>

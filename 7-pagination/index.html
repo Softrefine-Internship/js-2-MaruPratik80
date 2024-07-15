@@ -6,10 +6,177 @@
     <title>Document</title>
     <style>
       /* write CSS here */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        font-size: 62.5%;
+      }
+      body {
+        font-size: 1.6rem;
+        font-family: sans-serif;
+        font-weight: 500;
+        color: #777;
+        display: grid;
+        place-items: center;
+        height: 100vh;
+      }
+      .pagination {
+        display: grid;
+        grid-template-columns: repeat(3, max-content);
+        align-items: center;
+      }
+      .pagination__btn {
+        font-size: inherit;
+        color: inherit;
+        background: none;
+        border: 1px solid #ccc;
+        display: inline-block;
+        padding: 1rem 1.5rem;
+      }
+      .pagination__btn:hover {
+        color: #1172eb;
+        background-color: #e9f5fe;
+      }
+      .pagination__btn:focus {
+        outline: none;
+        color: #333;
+      }
+      .pagination__btn--left {
+        border-radius: 0.8rem 0 0 0.8rem;
+        border-right: none;
+      }
+      .pagination__btn--right {
+        border-radius: 0 0.8rem 0.8rem 0;
+      }
+      .pagination__list {
+        display: flex;
+        align-items: center;
+        list-style: none;
+        border-collapse: collapse;
+      }
+      .pagination__item {
+        border: 1px solid #ccc;
+        border-right: none;
+      }
+      .pagination__link:link,
+      .pagination__link:visited {
+        text-decoration: none;
+        color: inherit;
+        display: inline-block;
+        padding: 1rem 1.5rem;
+        transition: all 0.2s;
+      }
+      .pagination__link:hover,
+      .pagination__link:active,
+      .pagination__link.active {
+        color: #1172eb;
+        background-color: #e9f5fe;
+      }
+      .pagination__link:focus {
+        outline: none;
+        color: #333;
+      }
+      @media only screen and (max-width: 25em) {
+        .pagination {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .pagination__list {
+          grid-column: 1/ -1;
+        }
+        .pagination__btn--left,
+        .pagination__btn--right {
+          grid-row: 2/3;
+          border-top: none;
+        }
+        .pagination__btn--left {
+          border-radius: 0 0 0 0.8rem;
+        }
+        .pagination__btn--right {
+          border-radius: 0 0 0.8rem 0;
+        }
+        .pagination__item:first-child {
+          border-radius: 0.8rem 0 0 0;
+        }
+        .pagination__item:last-child {
+          border-radius: 0 0.8rem 0 0;
+          border-right: 1px solid #ccc;
+        }
+      }
     </style>
   </head>
-  <body></body>
+  <body>
+    <div class="pagination">
+      <button class="pagination__btn pagination__btn--left">Previous</button>
+      <ul class="pagination__list">
+        <li class="pagination__item">
+          <a href="#" class="pagination__link">1</a>
+        </li>
+        <li class="pagination__item">
+          <a href="#" class="pagination__link">2</a>
+        </li>
+        <li class="pagination__item">
+          <a href="#" class="pagination__link active">3</a>
+        </li>
+        <li class="pagination__item">
+          <a href="#" class="pagination__link">4</a>
+        </li>
+        <li class="pagination__item">
+          <a href="#" class="pagination__link">5</a>
+        </li>
+      </ul>
+      <button class="pagination__btn pagination__btn--right">Next</button>
+    </div>
+  </body>
   <script>
     // write javascript here
+    "use strict";
+    const pages = document.querySelectorAll(".pagination__link");
+    const btnLeft = document.querySelector(".pagination__btn--left");
+    const btnRight = document.querySelector(".pagination__btn--right");
+
+    const previousPage = function () {
+      for (let i = 1; i < pages.length; i++) {
+        if (pages[i].classList.contains("active")) {
+          pages[i].classList.remove("active");
+          pages[i - 1].classList.add("active");
+          break;
+        }
+      }
+    };
+    const nextPage = function () {
+      for (let i = 0; i < pages.length - 1; i++) {
+        if (pages[i].classList.contains("active")) {
+          pages[i].classList.remove("active");
+          pages[i + 1].classList.add("active");
+          break;
+        }
+      }
+    };
+    btnLeft.addEventListener("click", previousPage);
+    btnRight.addEventListener("click", nextPage);
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowLeft") {
+        previousPage();
+      }
+      if (e.key === "ArrowRight") {
+        nextPage();
+      }
+    });
+
+    for (let i = 0; i < pages.length; i++) {
+      pages[i].addEventListener("click", function () {
+        for (let j = 0; j < pages.length; j++) {
+          if (pages[j].classList.contains("active")) {
+            pages[j].classList.remove("active");
+            break;
+          }
+        }
+        pages[i].classList.add("active");
+      });
+    }
   </script>
 </html>
