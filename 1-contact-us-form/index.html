@@ -3,12 +3,283 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+
     <title>Document</title>
     <style>
       /* write CSS here */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        font-size: 62.5%;
+      }
+      body {
+        font-family: "Poppins", sans-serif;
+        font-size: 1.4rem;
+        line-height: 1.5;
+        color: #343a40;
+      }
+      .contact-us {
+        height: 100vh;
+        padding: 4rem 0 2rem;
+        background-image: radial-gradient(
+            circle at 5% 25%,
+            rgba(238, 190, 250, 0.6) 0%,
+            transparent 20%
+          ),
+          radial-gradient(
+            circle at 30% 10%,
+            rgba(176, 151, 252, 0.5) 0%,
+            transparent 25%
+          );
+      }
+      .container {
+        max-width: 58rem;
+        padding: 1.2rem;
+        margin: 0 auto;
+      }
+      .form-heading {
+        font-size: 3.2rem;
+        text-align: center;
+        margin-bottom: 0.8rem;
+      }
+      .form-text {
+        font-size: 1.6rem;
+        color: #495057;
+        text-align: center;
+        margin-bottom: 6rem;
+      }
+      .form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.6rem;
+      }
+      .form-feild {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+        flex: 1;
+      }
+      .form-feild-name {
+        display: flex;
+        justify-content: space-between;
+        gap: 3.2rem;
+      }
+      .form-label {
+        font-weight: 600;
+      }
+      .form-input,
+      .textarea {
+        padding: 0.8rem 1.6rem;
+        border: 1px solid #ced4da;
+        border-radius: 0.6rem;
+        box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.025);
+      }
+      .form-input:focus,
+      .select:focus,
+      .textarea:focus {
+        outline: none;
+        border: 1px solid #4848e0;
+      }
+      .phone-no {
+        display: flex;
+        align-items: center;
+        border: 1px solid #ced4da;
+        border-radius: 0.6rem;
+        box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.025);
+      }
+      .phone-no:focus-within {
+        border: 1px solid #4848e0;
+      }
+      .country {
+        border: none;
+        border-radius: 0.6rem;
+        padding: 0.7rem 0 0.8rem 1.6rem;
+        color: #868e96;
+      }
+      .number {
+        border: none;
+        flex: 1;
+      }
+      .country:focus,
+      .number:focus {
+        border: none;
+      }
+      .policy {
+        display: flex;
+        align-items: center;
+        gap: 1.6rem;
+        margin: 0.8rem 0 1.6rem;
+      }
+      .policy-link:link,
+      .policy-link:visited {
+        font-weight: 500;
+        color: #4848e0;
+        text-decoration: none;
+      }
+      .btn {
+        /* font-size: 1.6rem; */
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        color: #fff;
+        cursor: pointer;
+        background-color: #4848e0;
+        display: inline-block;
+        padding: 12px;
+      }
+      .btn:hover {
+        background-color: #4040c2;
+      }
+      /* policy switch */
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 3.2rem;
+        height: 1.8rem;
+      }
+      .switch-input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #e5e5e5;
+        border-radius: 2rem;
+        transition: 0.4s;
+      }
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 1.4rem;
+        width: 1.4rem;
+        left: 0.2rem;
+        bottom: 0.2rem;
+        background-color: #fff;
+        border-radius: 50%;
+        transition: 0.4s;
+      }
+      .switch-input:checked + .slider {
+        background-color: #4848e0;
+      }
+      .switch-input:focus + .slider {
+        box-shadow: 0 0 1px #4848e0;
+      }
+      .switch-input:checked + .slider:before {
+        transform: translateX(1.4rem);
+      }
+      @media only screen and (max-width: 62.5em) {
+        html {
+          font-size: 56.25%;
+        }
+      }
+      @media only screen and (max-width: 50em) {
+        html {
+          font-size: 50%;
+        }
+      }
+      @media only screen and (max-width: 31.25em) {
+        .contact-us {
+          padding-top: 2rem;
+        }
+        .form-heading {
+          font-size: 2.8rem;
+          margin-bottom: 0.4rem;
+        }
+        .form-text {
+          margin-bottom: 4rem;
+        }
+        .container {
+          width: 100%;
+        }
+        .form-feild-name {
+          flex-direction: column;
+          gap: 1.6rem;
+        }
+      }
     </style>
   </head>
-  <body></body>
+  <body>
+    <section class="contact-us">
+      <div class="container">
+        <h2 class="form-heading">Contact sales</h2>
+        <p class="form-text">
+          Aute magna lrure deserunt veniam aliqua magna enim voluptate.
+        </p>
+
+        <form name="contact-us" class="form">
+          <div class="form-feild-name">
+            <div class="form-feild">
+              <label class="form-label" for="fname">First name</label>
+              <input class="form-input" type="text" name="fname" id="fname" />
+            </div>
+            <div class="form-feild">
+              <label class="form-label" for="lname">Last name</label>
+              <input class="form-input" type="text" name="lname" id="lname" />
+            </div>
+          </div>
+          <div class="form-feild">
+            <label class="form-label" for="company">Company</label>
+            <input class="form-input" type="text" name="company" id="company" />
+          </div>
+          <div class="form-feild">
+            <label class="form-label" for="email">Email</label>
+            <input class="form-input" type="email" name="email" id="email" />
+          </div>
+          <div class="form-feild">
+            <label class="form-label" for="ph-no">Phone number</label>
+            <div class="phone-no">
+              <select class="country select" name="country-code" id="code">
+                <option class="option" value="us" selected>US</option>
+                <option class="option" value="india">India</option>
+              </select>
+              <input
+                class="number form-input"
+                type="number"
+                name="ph-no"
+                id="ph-no"
+              />
+            </div>
+          </div>
+          <div class="form-feild">
+            <label class="form-label" for="message">Message</label>
+            <textarea
+              class="textarea"
+              name="message"
+              id="message"
+              cols="30"
+              rows="4"
+            ></textarea>
+          </div>
+          <div class="policy">
+            <label class="switch">
+              <input class="switch-input" type="checkbox" />
+              <span class="slider"></span>
+            </label>
+            <p>
+              By selecting this, you agree to our
+              <a class="policy-link" href="#">privacy policy.</a>
+            </p>
+          </div>
+          <input class="btn form-input" type="submit" value="Let's talk" />
+        </form>
+      </div>
+    </section>
+  </body>
   <script>
     // write javascript here
   </script>
