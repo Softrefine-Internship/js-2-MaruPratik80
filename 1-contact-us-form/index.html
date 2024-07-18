@@ -79,7 +79,7 @@
       }
       .form-input,
       .textarea {
-        padding: 0.8rem 1.6rem;
+        padding: 0.8rem 1.25rem;
         border: 1px solid #ced4da;
         border-radius: 0.6rem;
         box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.025);
@@ -103,9 +103,16 @@
       .country {
         border: none;
         border-radius: 0.6rem;
-        padding: 0.7rem 0 0.8rem 1.6rem;
+        padding: 0.7rem 0 0.8rem 0.5rem;
         color: #868e96;
       }
+      .option:first-child {
+        color: #868e96;
+      }
+      .option {
+        color: #343a40;
+      }
+
       .number {
         border: none;
         flex: 1;
@@ -221,7 +228,13 @@
           Aute magna lrure deserunt veniam aliqua magna enim voluptate.
         </p>
 
-        <form name="contact-us" class="form">
+        <form
+          name="contactUs"
+          class="form"
+          method="post"
+          action="valid.html"
+          onsubmit="return validate()"
+        >
           <div class="form-feild-name">
             <div class="form-feild">
               <label class="form-label" for="fname">First name</label>
@@ -243,14 +256,15 @@
           <div class="form-feild">
             <label class="form-label" for="ph-no">Phone number</label>
             <div class="phone-no">
-              <select class="country select" name="country-code" id="code">
-                <option class="option" value="us" selected>US</option>
+              <select class="country select" name="countryCode" id="code">
+                <option class="option" value="">Country</option>
+                <option class="option" value="us">US</option>
                 <option class="option" value="india">India</option>
               </select>
               <input
                 class="number form-input"
                 type="number"
-                name="ph-no"
+                name="phNo"
                 id="ph-no"
               />
             </div>
@@ -267,7 +281,7 @@
           </div>
           <div class="policy">
             <label class="switch">
-              <input class="switch-input" type="checkbox" />
+              <input class="switch-input" type="checkbox" name="agreePolicy" />
               <span class="slider"></span>
             </label>
             <p>
@@ -282,5 +296,48 @@
   </body>
   <script>
     // write javascript here
+    const form = document.forms.contactUs;
+    const fname = document.contactUs.fname;
+    const lname = document.contactUs.lname;
+    const company = document.contactUs.company;
+    const email = document.contactUs.email;
+    const countryCode = document.contactUs.countryCode;
+    const phNo = document.contactUs.phNo;
+    const message = document.contactUs.message;
+    const agreePolicy = document.contactUs.agreePolicy;
+
+    const validate = function () {
+      if (fname.value === "") {
+        alert("Please enter first name");
+        return false;
+      } else if (lname.value === "") {
+        alert("Please enter last name");
+        return false;
+      } else if (company.value === "") {
+        alert("Please enter company");
+        return false;
+      } else if (
+        email.value === "" ||
+        !email.value.includes("@") ||
+        !email.value.includes(".")
+      ) {
+        alert("Please enter valid email");
+        return false;
+      } else if (countryCode.value === "") {
+        alert("Please select country");
+        return false;
+      } else if (phNo.value.length !== 10) {
+        alert("Please enter valid phone number");
+        return false;
+      } else if (message.value === "") {
+        alert("Please enter message");
+        return false;
+      } else if (agreePolicy.value === "") {
+        return false;
+        alert("Please agree our policy");
+      } else {
+        return true;
+      }
+    };
   </script>
 </html>

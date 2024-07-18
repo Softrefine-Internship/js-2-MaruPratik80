@@ -136,6 +136,7 @@
     const pages = document.querySelectorAll(".pagination__link");
     const btnLeft = document.querySelector(".pagination__btn--left");
     const btnRight = document.querySelector(".pagination__btn--right");
+    let active = 0;
 
     const previousPage = function () {
       for (let i = 1; i < pages.length; i++) {
