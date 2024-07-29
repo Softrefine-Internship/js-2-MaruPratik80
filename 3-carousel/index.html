@@ -100,6 +100,29 @@
       .indicator.current {
         background-color: #fff;
       }
+      @media only screen and (max-width: 68.75em) {
+        html {
+          font-size: 56.25%;
+        }
+      }
+      @media only screen and (max-width: 50em) {
+        html {
+          font-size: 50%;
+        }
+      }
+      @media only screen and (max-width: 25em) {
+        .btn {
+          height: 4.8rem;
+          width: 4.8rem;
+        }
+        .btn:hover {
+          box-shadow: 0 0 0 0.4rem currentColor;
+        }
+        .btn__icon {
+          height: 3rem;
+          width: 3rem;
+        }
+      }
     </style>
   </head>
   <body>

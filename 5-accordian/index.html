@@ -42,7 +42,7 @@
       .accordion-heading {
         font-size: 2rem;
         font-weight: 500;
-        transition: all 0.3s;
+        transition: all 0.4s;
       }
       .accordion-collapse {
         background: none;
@@ -52,17 +52,19 @@
       .accordion-collapse-icon {
         height: 2rem;
         stroke: currentColor;
-        transition: all 0.3s;
+        transition: all 0.4s ease-in-out;
+        backface-visibility: visible;
       }
       .accordion.open .accordion-collapse-icon {
-        transform: rotateX(180deg);
+        transform: rotateX(-180deg);
       }
       .accordion-body {
         opacity: 0;
         height: 0;
         transform: scaleY(0);
         transform-origin: top;
-        transition: all 0.3s;
+        padding: 0 1.6rem;
+        transition: all 0.4s;
       }
       .accordion.open .accordion-body {
         opacity: 1;
