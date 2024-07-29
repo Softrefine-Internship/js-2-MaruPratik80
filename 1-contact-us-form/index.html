@@ -74,7 +74,7 @@
         grid-template-rows: repeat(4, 1fr) 2fr;
         grid-row-gap: 2.4vh;
         grid-column-gap: 3.2rem;
-        align-content: space-around;
+        /* align-content: space-around; */
       }
       .form-feild {
         grid-column: 1/-1;
@@ -93,7 +93,8 @@
       }
       .form-input,
       .textarea {
-        flex: 1;
+        min-height: 3.2rem;
+        height: 4.2vh;
         font-size: inherit;
         padding: 0.8rem 1.25rem;
         border: 1px solid #ced4da;
@@ -107,7 +108,8 @@
         border: 1px solid #4848e0;
       }
       .phone-no {
-        flex: 1;
+        min-height: 3.2rem;
+        height: 4.2vh;
         display: flex;
         align-items: center;
         border: 1px solid #ced4da;
@@ -116,6 +118,9 @@
       }
       .phone-no:focus-within {
         border: 1px solid #4848e0;
+      }
+      .textarea {
+        flex: 1;
       }
       .country {
         height: 100%;
